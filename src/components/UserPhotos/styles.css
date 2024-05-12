@@ -1,0 +1,67 @@
+/* Container for all user photos */
+.header {
+  padding: 20px;
+}
+
+.user-photos-container {
+  padding: 20px;
+  border: 2px solid #ccc; /* Add a 2px solid border with a light gray color */
+  border-radius: 10px; /* Optional: Add border radius for rounded corners */
+}
+
+.user {
+  color: blue;
+}
+
+/* Container for each photo */
+.photo-container {
+  margin-bottom: 20px;
+  padding: 10px; /* Add padding for each photo container */
+  border: 1px solid #ccc; /* Add a 1px solid border with a light gray color */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  border-color: rgb(33, 51, 51);
+}
+
+/* Styling for the photo itself */
+.photo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+/* Styling for the posted time */
+.posted-time {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Styling for the comments header */
+.comments-header {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Styling for each comment */
+.comment {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+/* Styling for the user's comment */
+.user-comment {
+  background-color: #e2f3e9; /* Light green background for user's comment */
+}
+
+/* Styling for other users' comments */
+.other-comment {
+  background-color: #f3f3f3; /* Light gray background for other users' comments */
+}
+
+/* Styling for the comment text */
+.comment-text {
+  margin-bottom: 5px;
+}

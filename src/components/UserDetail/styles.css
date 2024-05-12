@@ -1,0 +1,34 @@
+/* styles.css */
+
+/* Container for user detail */
+.user-detail-container {
+  padding: 20px;
+  margin-top: 20px; /* Add margin at the top to separate from the header */
+  border: 1px solid #ccc; /* Add a 1px solid border with light gray color */
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+/* Styling for the headings */
+.heading {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Styling for user name */
+.user-name {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Styling for user location, description, and occupation */
+.user-info {
+  margin-bottom: 10px;
+}
+
+/* Styling for the link */
+.view-photos-link {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #007bff; /* Blue color for the link */
+}

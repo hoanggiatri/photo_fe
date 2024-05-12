@@ -1,0 +1,14 @@
+.topbar-appBar {
+  height: 60;
+  justify-content: "center";
+  background-color: #2196f3;
+}
+
+.topbar-left {
+  flex-grow: 1;
+  margin-left: 20px; 
+}
+
+.topbar-right {
+  margin-right: 20px; 
+}
