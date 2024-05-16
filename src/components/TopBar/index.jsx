@@ -1,54 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { AppBar, Toolbar, Typography } from "@mui/material";
-import { useLocation } from "react-router-dom";
-import { fetchModel } from "../../lib/fetchModelData";
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 
-import "./styles.css";
-
-/**
- * Define TopBar, a React component of Project 4.
- */
-function TopBar() {
-  const location = useLocation();
-  const [context, setContext] = useState("");
-
-  useEffect(() => {
-    async function fetchData() {
-      if (location.pathname === "/users") {
-        setContext("User List");
-      } else if (location.pathname.startsWith("/users/")) {
-        const userId = location.pathname.split("/").pop();
-        try {
-          const user = await fetchModel(`/api/user/${userId}`);
-          setContext(`Details of ${user.first_name} ${user.last_name}`);
-        } catch (error) {
-          console.error("Failed to fetch user details:", error);
-          setContext("User Details Not Available");
-        }
-      } else if (location.pathname.startsWith("/photos/")) {
-        const userId = location.pathname.split("/").pop();
-        try {
-          const user = await fetchModel(`/api/user/${userId}`);
-          setContext(`Photos of ${user.first_name} ${user.last_name}`);
-        } catch (error) {
-          console.error("Failed to fetch user details:", error);
-          setContext("User Photos Not Available");
-        }
-      }
-    }
-
-    fetchData();
-  }, [location.pathname]);
+function TopBar({ isLoggedIn, onLogout, userName }) {
+  const navigate = useNavigate();
+  const [loggedOut, setLoggedOut] = useState(false);
+  const handleLogout = () => {
+    // Thực hiện đăng xuất ở đây
+    onLogout();
+    setLoggedOut(true);
+    // Chuyển hướng đến trang đăng nhập
+    navigate("/login");
+  };
 
   return (
-    <AppBar className="topbar-appBar" position="absolute">
+    <AppBar position="static">
       <Toolbar>
-        <Typography variant="h5" color="inherit" className="topbar-left">
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Hoàng Gia Trí
         </Typography>
-        <Typography variant="h6" color="inherit" className="topbar-right">
-          {context}
-        </Typography>
+        {isLoggedIn ? (
+          <>
+            <Typography variant="body1">Hi, {userName.first_name}</Typography>
+            <Button color="inherit" onClick={handleLogout}>Logout</Button>
+          </>
+        ) : (
+          <>
+            {!loggedOut && (
+              <>
+                <Button color="inherit" component={Link} to="/login">Login</Button>
+                <Button color="inherit" component={Link} to="/register">Register</Button>
+              </>
+            )}
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );

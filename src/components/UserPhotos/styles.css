@@ -1,67 +1,113 @@
-/* Container for all user photos */
+
 .header {
   padding: 20px;
 }
 
 .user-photos-container {
   padding: 20px;
-  border: 2px solid #ccc; /* Add a 2px solid border with a light gray color */
-  border-radius: 10px; /* Optional: Add border radius for rounded corners */
+  border: 2px solid #ccc;
+  border-radius: 10px;
 }
 
 .user {
   color: blue;
 }
 
-/* Container for each photo */
+
 .photo-container {
   margin-bottom: 20px;
-  padding: 10px; /* Add padding for each photo container */
-  border: 1px solid #ccc; /* Add a 1px solid border with a light gray color */
-  border-radius: 5px; /* Add border radius for rounded corners */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px; 
   border-color: rgb(33, 51, 51);
 }
 
-/* Styling for the photo itself */
+
 .photo {
   width: 100%;
   max-width: 400px;
   height: auto;
   display: block;
   margin-bottom: 10px;
-  border-radius: 5px; /* Add border radius for rounded corners */
+  border-radius: 5px; 
 }
 
-/* Styling for the posted time */
+
 .posted-time {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* Styling for the comments header */
+
 .comments-header {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* Styling for each comment */
+
 .comment {
   padding: 10px;
   margin-top: 10px;
   border-radius: 5px;
 }
 
-/* Styling for the user's comment */
+
 .user-comment {
-  background-color: #e2f3e9; /* Light green background for user's comment */
+  background-color: #e2f3e9;
 }
 
 /* Styling for other users' comments */
 .other-comment {
-  background-color: #f3f3f3; /* Light gray background for other users' comments */
+  background-color: #f3f3f3;
 }
 
 /* Styling for the comment text */
 .comment-text {
   margin-bottom: 5px;
 }
+
+/* Styling for buttons */
+button.MuiButton-root {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.MuiButton-root:hover {
+  background-color: #115293; 
+}
+
+button.MuiButton-root:active {
+  background-color: #0d3c61;
+}
+
+button.MuiButton-root:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+.add-photo-button {
+  margin: 20px 0;
+  padding: 12px 24px;
+  background-color: #388e3c;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.add-photo-button:hover {
+  background-color: #2e7d32; 
+  transform: translateY(-2px); 
+}
+
+.add-photo-button:active {
+  background-color: #255d27;
+  transform: translateY(0); 
+}
+

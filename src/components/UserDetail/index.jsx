@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Link } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchModel } from "../../lib/fetchModelData";
 
 function UserDetail() {
   const { userId } = useParams(); // Extract userId from route params
   const [user, setUser] = useState(null);
+  const navigate = useNavigate(); // Lấy đối tượng history từ react-router-dom
 
   useEffect(() => {
     const fetchUserDetail = async () => {
@@ -24,6 +25,10 @@ function UserDetail() {
     return <Typography variant="h4">Loading...</Typography>;
   }
 
+  const handleViewPhotos = () => {
+    navigate(`/photos/${userId}`); // Điều hướng đến trang xem ảnh bằng cách thay đổi URL
+  };
+
   return (
     <div>
       <Typography variant="h4" className="heading">User Detail</Typography>
@@ -32,7 +37,7 @@ function UserDetail() {
         <Typography className="user-info">Location: {user.location}</Typography>
         <Typography className="user-info">Description: {user.description}</Typography>
         <Typography className="user-info">Occupation: {user.occupation}</Typography>
-        <Link href={`/photos/${userId}`} className="view-photos-link">View Photos</Link>
+        <Link onClick={handleViewPhotos} className="view-photos-link">View Photos</Link>
       </div>
     </div>
   );

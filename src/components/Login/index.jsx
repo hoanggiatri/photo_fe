@@ -1,42 +1,51 @@
-// Login.js
 import React, { useState } from 'react';
-import { fetchModel } from '../../lib/fetchModelData';
+import { useNavigate } from 'react-router-dom';
+import './styles.css'; // Import CSS file
 
-const Login = () => {
-    const [loginName, setLoginName] = useState('');
+const Login = ({ onLogin }) => {
+    const [login_name, setLoginName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleLogin = async () => {
         try {
-            const response = await fetchModel('/api/login', {
+            const response = await fetch('http://localhost:8081/admin/login', {
                 method: 'post',
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ loginName, password })
+                body: JSON.stringify({ login_name, password })
             });
-            if(response.ok) {
-                return response.send("complete");
-            }else {
-                return response.send("error");
+
+            // Extract token from response
+            const data = await response.json();
+            
+            const {user_id, first_name } = data;
+            if (response.ok) {
+                // Store token in sessionStorage
+                onLogin && onLogin({ user_id, first_name });
+                navigate(`/users/${user_id}`);
+            } else {
+                setError(data.message);
             }
         } catch (error) {
-            setError('Login failed. Please try again.');
+            console.error('Error logging in:', error);
+            setError('An error occurred while logging in. Please try again later.');
         }
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Username or Email" value={loginName} onChange={(e) => setLoginName(e.target.value)} />
+        <div className="login-container">
+            <div className="login-form">
+                <h1>Login</h1>
+                <input type="text" placeholder="Login Name" value={login_name} onChange={(e) => setLoginName(e.target.value)} />
                 <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Login</button>
-            </form>
+                {error && <p className="error-message">{error}</p>}
+                <button onClick={handleLogin}>Login</button>
+                <p className="signup-link">Don't have an account? <a href="/register">Sign up</a></p>
+            </div>
         </div>
     );
 };
